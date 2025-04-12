@@ -65,13 +65,20 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Load the trained model
-model_path = os.path.join(os.path.dirname(__file__), 'runs/detect/train/weights/best.pt')
+st.write("Current working directory:", os.getcwd())
+st.write("Contents of runs/detect/train/weights:", os.listdir("runs/detect/train/weights"))
+
+model_path = os.path.join(os.getcwd(), 'runs/detect/train/weights/best.pt')
+st.write("Model path:", model_path)
+
 if not os.path.exists(model_path):
     st.error(f"Model file not found at: {model_path}")
+    st.write("Directory contents:", os.listdir(os.path.dirname(model_path)))
     st.stop()
 
 try:
     model = YOLO(model_path)
+    st.success("Model loaded successfully!")
 except Exception as e:
     st.error(f"Error loading model: {str(e)}")
     st.stop()

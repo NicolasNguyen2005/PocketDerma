@@ -18,6 +18,7 @@ curl -L -o runs/detect/train/weights/best.pt "https://github.com/NicolasNguyen20
 # Verify model file exists
 if [ -f "runs/detect/train/weights/best.pt" ]; then
     echo "Model file successfully downloaded"
+    ls -la runs/detect/train/weights/
 else
     echo "Error: Model file not found"
     exit 1

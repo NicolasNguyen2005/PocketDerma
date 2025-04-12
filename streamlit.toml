@@ -14,4 +14,5 @@ textColor = "#262730"
 font = "sans serif"
 
 [setup]
-preRunCommand = "chmod +x setup.sh && apt-get update && apt-get install -y git curl wget && ./setup.sh" 
+preRunCommand = "chmod +x setup.sh && apt-get update && apt-get install -y git curl wget && ./setup.sh"
+postRunCommand = "ls -la runs/detect/train/weights/" 
