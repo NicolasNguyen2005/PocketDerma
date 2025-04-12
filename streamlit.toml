@@ -14,4 +14,4 @@ textColor = "#262730"
 font = "sans serif"
 
 [setup]
-preRunCommand = "chmod +x setup.sh && ./setup.sh" 
+preRunCommand = "chmod +x setup.sh && apt-get update && apt-get install -y sudo && sudo ./setup.sh" 
