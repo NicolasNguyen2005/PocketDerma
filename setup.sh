@@ -1,15 +1,8 @@
 #!/bin/bash
 
-# Install Git LFS
-curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
-apt-get install -y git-lfs
-git lfs install
-
-# Create necessary directories
+# Create necessary directories first
+echo "Creating directories..."
 mkdir -p runs/detect/train/weights
-
-# Install Python dependencies
-pip install -r requirements.txt
 
 # Download the model file directly from GitHub
 echo "Downloading model file..."
@@ -23,6 +16,16 @@ else
     echo "Error: Model file not found"
     exit 1
 fi
+
+# Install Git LFS
+echo "Installing Git LFS..."
+curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
+apt-get install -y git-lfs
+git lfs install
+
+# Install Python dependencies
+echo "Installing Python dependencies..."
+pip install -r requirements.txt
 
 echo "Creating virtual environment..."
 python3 -m venv venv

@@ -15,4 +15,4 @@ font = "sans serif"
 
 [setup]
 preRunCommand = "chmod +x setup.sh && apt-get update && apt-get install -y git curl wget && ./setup.sh"
-postRunCommand = "ls -la runs/detect/train/weights/" 
+postRunCommand = "ls -la runs/detect/train/weights/ && python3 -c \"import os; print('Current directory:', os.getcwd()); print('Model file exists:', os.path.exists('runs/detect/train/weights/best.pt'))\"" 
