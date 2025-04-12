@@ -23,11 +23,11 @@ COPY requirements.txt .
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Create necessary directories
-RUN mkdir -p runs/detect/train/weights
+# Create model directory
+RUN mkdir -p /app/models
 
-# Copy the model file first
-COPY runs/detect/train/weights/best.pt runs/detect/train/weights/
+# Copy the model file to a more accessible location
+COPY runs/detect/train/weights/best.pt /app/models/
 
 # Copy the rest of the application
 COPY . .
@@ -39,6 +39,7 @@ EXPOSE 8501
 ENV PYTHONUNBUFFERED=1
 ENV STREAMLIT_SERVER_PORT=8501
 ENV STREAMLIT_SERVER_ADDRESS=0.0.0.0
+ENV MODEL_PATH=/app/models/best.pt
 
 # Command to run the application
 CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"] 

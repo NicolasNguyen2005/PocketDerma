@@ -65,7 +65,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Load the trained model
-model = YOLO('runs/detect/train/weights/best.pt')
+model_path = os.getenv('MODEL_PATH', 'runs/detect/train/weights/best.pt')
+model = YOLO(model_path)
 
 # Enhanced skincare recommendations with ingredients, prices, and usage instructions
 SKINCARE_RECOMMENDATIONS = {
