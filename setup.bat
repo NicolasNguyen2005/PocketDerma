@@ -1,12 +1,10 @@
 @echo off
 echo Creating virtual environment...
 python -m venv venv
+call venv\Scripts\activate
 
-echo Activating virtual environment...
-call .\venv\Scripts\activate
-
-echo Installing requirements...
+echo Installing dependencies...
 pip install -r requirements.txt
 
-echo Starting the app...
-streamlit run app.py 
+echo Setup complete!
+pause 
