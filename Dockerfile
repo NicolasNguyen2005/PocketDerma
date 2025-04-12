@@ -7,16 +7,27 @@ RUN apt-get update && apt-get install -y \
     libsm6 \
     libxext6 \
     libxrender-dev \
+    git \
+    git-lfs \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
 WORKDIR /app
+
+# Initialize Git LFS
+RUN git lfs install
 
 # Copy requirements first to leverage Docker cache
 COPY requirements.txt .
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Create necessary directories
+RUN mkdir -p runs/detect/train/weights
+
+# Copy the model file first
+COPY runs/detect/train/weights/best.pt runs/detect/train/weights/
 
 # Copy the rest of the application
 COPY . .
