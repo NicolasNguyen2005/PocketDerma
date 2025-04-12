@@ -6,12 +6,15 @@ mkdir -p runs/detect/train/weights
 # Install Python dependencies
 pip install -r requirements.txt
 
-# Download model file if it doesn't exist
-if [ ! -f "runs/detect/train/weights/best.pt" ]; then
-    echo "Downloading model file..."
-    # Add your model download command here
-    # For example, if your model is stored in a public URL:
-    # wget -O runs/detect/train/weights/best.pt "YOUR_MODEL_URL"
+# Copy model file to the correct location
+cp -r /mount/src/pocketderma/runs/detect/train/weights/best.pt runs/detect/train/weights/
+
+# Verify model file exists
+if [ -f "runs/detect/train/weights/best.pt" ]; then
+    echo "Model file successfully copied"
+else
+    echo "Error: Model file not found"
+    exit 1
 fi
 
 echo "Creating virtual environment..."

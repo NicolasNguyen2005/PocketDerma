@@ -65,8 +65,16 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Load the trained model
-model_path = os.getenv('MODEL_PATH', 'runs/detect/train/weights/best.pt')
-model = YOLO(model_path)
+model_path = os.path.join(os.path.dirname(__file__), 'runs/detect/train/weights/best.pt')
+if not os.path.exists(model_path):
+    st.error(f"Model file not found at: {model_path}")
+    st.stop()
+
+try:
+    model = YOLO(model_path)
+except Exception as e:
+    st.error(f"Error loading model: {str(e)}")
+    st.stop()
 
 # Enhanced skincare recommendations with ingredients, prices, and usage instructions
 SKINCARE_RECOMMENDATIONS = {
