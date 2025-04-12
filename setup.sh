@@ -11,14 +11,13 @@ mkdir -p runs/detect/train/weights
 # Install Python dependencies
 pip install -r requirements.txt
 
-# Clone the repository to get the model file
-git clone https://github.com/NicolasNguyen2005/PocketDerma.git temp_repo
-cp temp_repo/runs/detect/train/weights/best.pt runs/detect/train/weights/
-rm -rf temp_repo
+# Download the model file directly from GitHub
+echo "Downloading model file..."
+curl -L -o runs/detect/train/weights/best.pt "https://github.com/NicolasNguyen2005/PocketDerma/raw/main/runs/detect/train/weights/best.pt"
 
 # Verify model file exists
 if [ -f "runs/detect/train/weights/best.pt" ]; then
-    echo "Model file successfully copied"
+    echo "Model file successfully downloaded"
 else
     echo "Error: Model file not found"
     exit 1
