@@ -4,9 +4,9 @@
 echo "Creating directories..."
 mkdir -p runs/detect/train/weights
 
-# Download the model file directly from GitHub
+# Download the model file from GitHub release
 echo "Downloading model file..."
-curl -L -o runs/detect/train/weights/best.pt "https://github.com/NicolasNguyen2005/PocketDerma/raw/main/runs/detect/train/weights/best.pt"
+curl -L -o runs/detect/train/weights/best.pt "https://github.com/NicolasNguyen2005/PocketDerma/releases/download/v1.0.0/best.pt"
 
 # Verify model file exists
 if [ -f "runs/detect/train/weights/best.pt" ]; then
