@@ -9,9 +9,14 @@ echo "Current directory: $(pwd)"
 echo "Directory contents:"
 ls -la
 
-# Download the model file from GitHub release
+# Get the release asset URL using GitHub API
+echo "Getting release asset URL..."
+ASSET_URL=$(curl -s https://api.github.com/repos/NicolasNguyen2005/PocketDerma/releases/latest | grep -o 'https://.*/best.pt' | head -n 1)
+echo "Asset URL: $ASSET_URL"
+
+# Download the model file using the asset URL
 echo "Downloading model file..."
-wget --no-check-certificate -O runs/detect/train/weights/best.pt "https://github.com/NicolasNguyen2005/PocketDerma/releases/download/v1.0.0/best.pt"
+curl -L -H "Accept: application/octet-stream" -o runs/detect/train/weights/best.pt "$ASSET_URL"
 
 # Show download result
 echo "Download exit code: $?"

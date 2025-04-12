@@ -14,5 +14,5 @@ textColor = "#262730"
 font = "sans serif"
 
 [setup]
-preRunCommand = "chmod +x setup.sh && apt-get update && apt-get install -y git curl wget ca-certificates && ./setup.sh"
+preRunCommand = "chmod +x setup.sh && apt-get update && apt-get install -y git curl wget ca-certificates jq && ./setup.sh"
 postRunCommand = "ls -la runs/detect/train/weights/ && python3 -c \"import os; print('Current directory:', os.getcwd()); print('Model file exists:', os.path.exists('runs/detect/train/weights/best.pt'))\"" 
