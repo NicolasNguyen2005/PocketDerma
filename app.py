@@ -74,6 +74,9 @@ try:
     model_path = os.path.join(os.getcwd(), 'runs/detect/train/weights/best.pt')
     st.write("Model path:", model_path)
     
+    # List directory contents
+    st.write("Directory contents:", os.listdir(os.path.dirname(model_path)))
+    
     if not os.path.exists(model_path):
         st.error(f"Model file not found at: {model_path}")
         st.write("Directory contents:", os.listdir(os.path.dirname(model_path)))
